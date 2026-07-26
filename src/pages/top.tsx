@@ -41,7 +41,7 @@ export function TopPage() {
       </section>
 
       <section>
-        <h2>新しい dnd-kit</h2>
+        <h2>新しい dnd-kit では…</h2>
         <p>デフォルトでタッチ操作に遅延が入ります．</p>
         <Link to="/current-api">試してみる</Link>
       </section>

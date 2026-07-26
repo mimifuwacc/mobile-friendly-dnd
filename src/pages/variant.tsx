@@ -36,7 +36,7 @@ export function VariantPage() {
           </Link>
         ) : (
           <Link className="pagination-next" to="/current-api">
-            次: 最近の dnd-kit <span aria-hidden="true">→</span>
+            次: 新しい dnd-kit では… <span aria-hidden="true">→</span>
           </Link>
         )}
       </nav>
