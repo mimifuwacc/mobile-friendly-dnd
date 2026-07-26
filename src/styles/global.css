@@ -1,0 +1,97 @@
+/* ============================================================
+   全体の下地。色は白黒のみ、装飾は最小限に留めている。
+   ============================================================ */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  color: #000;
+  background: #fff;
+}
+
+/* 1 カラムを中央寄せ。下の余白はスマホで最後の項目が
+   画面下端に貼り付かないための逃げ。 */
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+a {
+  color: #000;
+}
+
+/* ------------------------------------------------------------
+   一覧ページ：各手法へのリンクと 1 行説明
+   ------------------------------------------------------------ */
+.index {
+  padding-left: 20px;
+}
+
+.index li {
+  margin-bottom: 16px;
+}
+
+.index p {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+/* 詳細ページ上部の「← 一覧」リンク */
+.back {
+  font-size: 14px;
+}
+
+/* ------------------------------------------------------------
+   詳細ページ：使用している sensor 設定のコード表示。
+   横長のコードは折り返さずスクロールさせる。
+   ------------------------------------------------------------ */
+.code {
+  margin: 0 0 24px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ------------------------------------------------------------
+   並び替えリスト本体
+   ------------------------------------------------------------ */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* user-select: none はドラッグ中に文字が選択されるのを防ぐため。
+   掴めるカーソル(grab)で「動かせる」ことを示す。 */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: grab;
+  user-select: none;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+/* 左端の飾りのグリップ(⠿)。掴む位置の目印で、ドラッグ判定は項目全体に効く。 */
+.handle {
+  color: #999;
+}
