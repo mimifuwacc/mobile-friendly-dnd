@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # vp をグローバル導入し、Node セットアップ・依存キャッシュ・vp install まで実施
+      # vp をグローバル導入し，Node セットアップ・依存キャッシュ・vp install まで実施
       # （vite-plus のバージョンは package.json / catalog から自動解決）
       - uses: voidzero-dev/setup-vp@v1
         with:

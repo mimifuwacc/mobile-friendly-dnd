@@ -11,7 +11,7 @@ export function SortableItem({ id, touchActionNone }: { id: string; touchActionN
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
-    // touch-action: none を当てるとタッチでも掴める。当てないとスクロールに取られる。
+    // touch-action: none を当てるとタッチでも掴める．当てないとスクロールに取られる．
     touchAction: touchActionNone ? "none" : undefined,
   };
 

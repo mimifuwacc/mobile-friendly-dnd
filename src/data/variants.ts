@@ -7,12 +7,13 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { PenSensor } from "@/sensors/pen-sensor";
 
 export type Variant = {
   slug: string;
+  step: number;
   title: string;
   summary: string;
+  result: string;
   /** 実際に使っている sensor 設定 (表示用) */
   code: string;
   /** 項目に touch-action: none を当てるか */
@@ -24,34 +25,42 @@ const keyboard = () => useSensor(KeyboardSensor, { coordinateGetter: sortableKey
 
 export const VARIANTS: Variant[] = [
   {
-    slug: "only-pointer-sensor",
-    title: "PointerSensor",
-    summary: "PointerSensorのみ設定する",
-    code: `useSensor(PointerSensor, {
+    slug: "mouse-sensor",
+    step: 1,
+    title: "MouseSensor",
+    summary: "マウス操作だけで並び替える．",
+    result:
+      "PC のマウス操作では並び替えられます．指ではページがスクロールし，ドラッグは始まりません．",
+    code: `useSensor(MouseSensor, {
   activationConstraint: { distance: 8 },
-})
-// CSS: touch-action: none;`,
+})`,
     touchActionNone: false,
     useVariantSensors: () =>
-      useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }), keyboard()),
+      useSensors(useSensor(MouseSensor, { activationConstraint: { distance: 8 } }), keyboard()),
   },
   {
     slug: "with-touch-action-none",
+    step: 2,
     title: "PointerSensor + touch-action: none",
-    summary:
-      "公式の推奨。項目に touch-action: none を当てるとタッチでも掴める。ただしその項目の上では縦スクロールできない。",
+    summary: "マウスとタッチを PointerSensor で拾い，ブラウザ標準のジェスチャーを無効にする．",
+    result: "指でも並び替えられますが，項目の上ではページをスクロールできません．",
     code: `useSensor(PointerSensor, {
   activationConstraint: { distance: 8 },
-})`,
+})
+
+.draggable-item {
+  touch-action: none;
+}`,
     touchActionNone: true,
     useVariantSensors: () =>
       useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }), keyboard()),
   },
   {
     slug: "with-touch-sensor",
-    title: "PointerSensor + TouchSensor",
-    summary:
-      "長押し版から遅延を外し、TouchSensor も distance 発火にした版。要素を移動するときにスクロールもしてしまう。",
+    step: 3,
+    title: "MouseSensor + TouchSensor",
+    summary: "マウスとタッチを別々に扱う．",
+    result: "スクロールとドラッグの両方が拾われてしまい，快適には動きません．",
     code: `useSensor(MouseSensor, {
   activationConstraint: { distance: 8 },
 })
@@ -68,9 +77,10 @@ useSensor(TouchSensor, {
   },
   {
     slug: "with-touch-sensor-delay",
-    title: "PointerSensor + TouchSensor (長押し)",
-    summary:
-      "長押し 250ms でドラッグ開始。素早いスワイプはスクロールになるので、touch-action なしで両立できる。",
+    step: 4,
+    title: "TouchSensor に遅延を入れる",
+    summary: "タッチだけ 250ms の長押しで発火させる．",
+    result: "スクロールとドラッグを区別でき，快適に動きます．",
     code: `useSensor(MouseSensor, {
   activationConstraint: { distance: 8 },
 })
@@ -87,35 +97,12 @@ useSensor(TouchSensor, {
         keyboard(),
       ),
   },
-  {
-    slug: "with-pen-sensor",
-    title: "PointerSensor + TouchSensor + PenSensor",
-    summary:
-      "指は TouchSensor(長押し)、ペンは pointerType === 'pen' だけ拾う PenSensor(distance)、マウスは MouseSensor に振り分ける。Surface Pen でもドラッグできる。",
-    code: `class PenSensor extends PointerSensor {
-  static activators = [{
-    eventName: "onPointerDown",
-    handler: ({ nativeEvent }) =>
-      nativeEvent.pointerType === "pen",
-  }];
-}
-
-useSensor(MouseSensor, { activationConstraint: { distance: 8 } })
-useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 5 } })
-useSensor(PenSensor,   { activationConstraint: { distance: 8 } })`,
-    touchActionNone: false,
-    useVariantSensors: () =>
-      useSensors(
-        useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
-        useSensor(TouchSensor, {
-          activationConstraint: { delay: 250, tolerance: 5 },
-        }),
-        useSensor(PenSensor, { activationConstraint: { distance: 8 } }),
-        keyboard(),
-      ),
-  },
 ];
 
 export function findVariant(slug: string): Variant | null {
   return VARIANTS.find((v) => v.slug === slug) || null;
+}
+
+export function findVariantByStep(step: number): Variant | null {
+  return VARIANTS.find((variant) => variant.step === step) || null;
 }

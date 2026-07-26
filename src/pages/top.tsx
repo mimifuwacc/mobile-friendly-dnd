@@ -4,22 +4,27 @@ import { VARIANTS } from "@/data/variants";
 export function TopPage() {
   return (
     <>
-      <h1>Legacy API（@dnd-kit/core）</h1>
-      <ol className="index">
-        {VARIANTS.map((v) => (
-          <li key={v.slug}>
-            <Link to={`/${v.slug}`}>{v.title}</Link>
-            <p>{v.summary}</p>
-          </li>
-        ))}
-      </ol>
-      <h1>現行 API（@dnd-kit/react）</h1>
-      <ul className="index">
-        <li>
-          <Link to="/current-api">デフォルト設定</Link>
-          <p>Sensorの指定なしで、タッチには250msの長押しが適用される。</p>
-        </li>
-      </ul>
+      <header>
+        <h1>mobile-friendly-dnd</h1>
+      </header>
+
+      <section>
+        <h2>Legacy API</h2>
+        <ol className="index">
+          {VARIANTS.map((variant) => (
+            <li key={variant.slug}>
+              <Link to={`/${variant.slug}`}>{variant.title}</Link>
+              <p>{variant.summary}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section>
+        <h2>新しい dnd-kit</h2>
+        <p>デフォルトでタッチ操作に遅延が入ります．</p>
+        <Link to="/current-api">試してみる</Link>
+      </section>
     </>
   );
 }

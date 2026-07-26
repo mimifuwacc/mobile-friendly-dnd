@@ -3,7 +3,7 @@ import { DragDropProvider } from "@dnd-kit/react";
 import { isSortable } from "@dnd-kit/react/sortable";
 import { CurrentSortableItem } from "@/components/current-sortable-item";
 
-const INITIAL_ITEMS = Array(40)
+const INITIAL_ITEMS = Array(20)
   .fill(0)
   .map((_, i) => `Item ${i + 1}`);
 

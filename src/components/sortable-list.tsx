@@ -4,7 +4,7 @@ import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-ki
 import { SortableItem } from "@/components/sortable-item";
 import type { Variant } from "@/data/variants";
 
-const INITIAL_ITEMS = Array(40)
+const INITIAL_ITEMS = Array(20)
   .fill(0)
   .map((_, i) => `Item ${i + 1}`);
 

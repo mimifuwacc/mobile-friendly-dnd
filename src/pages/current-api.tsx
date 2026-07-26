@@ -17,13 +17,21 @@ export function CurrentApiPage() {
       <p className="back">
         <Link to="/">← 一覧</Link>
       </p>
-      <h1>現行 API（デフォルト設定）</h1>
+      <h1>新しい dnd-kit では…</h1>
       <p>
-        @dnd-kit/react の現行 API。Sensor を設定しなくても、タッチでは 250ms
-        の長押しと5pxの許容移動がデフォルトで使われる。
+        それぞれの Sensor が自動的に設定され，タッチ操作については 250ms の長押しと5pxの許容移動
+        (tolerance) がデフォルトで設定される．
       </p>
+      <div className="instructions">
+        <p>結果: 一つ前のデモと同様に動作します．</p>
+      </div>
       <pre className="code">{code}</pre>
       <CurrentSortableList />
+      <nav className="pagination" aria-label="デモの前後">
+        <Link to="/with-touch-sensor-delay">
+          <span aria-hidden="true">←</span> 前: TouchSensor に遅延を入れる
+        </Link>
+      </nav>
     </>
   );
 }
