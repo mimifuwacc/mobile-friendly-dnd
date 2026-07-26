@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "20260726-mobile-friendly-sorting",
+  "name": "20260727-zatult-study",
   "compatibility_date": "2026-07-24",
   "assets": {
     "directory": "./dist",

@@ -4,6 +4,7 @@ import { VARIANTS } from "@/data/variants";
 export function TopPage() {
   return (
     <>
+      <h1>Legacy API（@dnd-kit/core）</h1>
       <ol className="index">
         {VARIANTS.map((v) => (
           <li key={v.slug}>
@@ -12,6 +13,13 @@ export function TopPage() {
           </li>
         ))}
       </ol>
+      <h1>現行 API（@dnd-kit/react）</h1>
+      <ul className="index">
+        <li>
+          <Link to="/current-api">デフォルト設定</Link>
+          <p>Sensorの指定なしで、タッチには250msの長押しが適用される。</p>
+        </li>
+      </ul>
     </>
   );
 }
