@@ -6,6 +6,26 @@ export function TopPage() {
     <>
       <header>
         <h1>mobile-friendly-dnd</h1>
+        <ul className="resources">
+          <li>
+            <a
+              href="https://decks.mimifuwa.cc/20260727-zatult-study/#/1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              発表資料を見る
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/mimifuwacc/mobile-friendly-dnd"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub リポジトリを見る
+            </a>
+          </li>
+        </ul>
       </header>
 
       <section>
