@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "dnd-sort",
+  "name": "20260726-mobile-friendly-sorting",
   "compatibility_date": "2025-07-01",
   "assets": {
     "directory": "./dist",
